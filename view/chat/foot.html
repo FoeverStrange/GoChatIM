@@ -3,8 +3,8 @@
 
     function upload(dom){
         uploadfile("attach/upload",dom,function(res){
-            if(res.code==0){
-                app.sendpicmsg(res.data)
+            if(res.Code==0){
+                app.sendpicmsg(res.Data)
             }
 
         })
@@ -196,25 +196,23 @@
                         var res=[];
                         var config = this.doutu.config;
                         for(var i in config.pkgids){
-                            res[config.pkgids[i]]=(config.baseurl+"/"+config.pkgids[i]+"/info.json")
+                            res[config.pkgids[i]]=(config.baseurl+config.pkgids[i]+"/info.json")
                         }
                         var that = this;
-                        for(var id in res){
-                            //console.log("res[i]",id,res[id])
-                            post(res[id]).then(response => {
-                                //console.log("post res[i]",id,res[id],pkginfo)
-                                var baseurl= config.baseurl+"/"+pkginfo.id+"/"
-                                for(var j in pkginfo.assets){
-                                    pkginfo.assets[j] = baseurl+pkginfo.assets[j];
-                                }
-                                pkginfo.icon = baseurl + pkginfo.icon;
-                                that.doutu.packages.push(pkginfo)
-                                if(that.doutu.choosed.pkgid==pkginfo.id){
-                                    that.doutu.choosed.assets=pkginfo.assets;
-                                }
-
-                            })
-                        }
+                        // for(var id in res){
+                        //     this.$http.get(res[id]).then(response => {
+                        //         var baseurl = config.baseurl+"/"+pkginfo.id+"/"
+                        //         for(var j in pkginfo.assets){
+                        //             pkginfo.assets[j] = baseurl + pkginfo.assets[j];
+                        //         }
+                        //         pkginfo.icon = baseurl+pkginfo.icon;
+                        //         that.doutu.packages.push(pkginfo)
+                        //         if(that.doutu.choosed.pkgid==pkginfo.id){
+                        //             that.doutu.choosed.assets=pkginfo.assets;
+                        //         }
+                        //     })
+                        // }
+                        
                     },
                     showweixin:function(){
                         mui.alert("请加微信号jiepool-winlion索取")
